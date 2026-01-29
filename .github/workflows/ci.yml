@@ -1,13 +1,13 @@
-name: Python CI Test
+name: Python CI and CD
 
 on: [push]
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -17,3 +17,7 @@ jobs:
 
       - name: Run tests
         run: python test_app.py
+
+      - name: Deploy (Mock)
+        if: success()    # This means only run if tests pass
+        run: echo "Deployment successful! 🚀"
